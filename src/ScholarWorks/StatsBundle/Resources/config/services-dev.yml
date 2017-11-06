@@ -1,0 +1,30 @@
+imports:
+    - { resource: "@ScholarWorksStatsBundle/Resources/config/services.yml" }
+
+parameters:
+    DateService.class: ScholarWorks\StatsBundle\Services\impl\DateService
+    statisticsService.class:  ScholarWorks\StatsBundle\Services\impl\BasicStatisticsServiceImpl
+    topTenBitStreamStatsRetriever.class:   ScholarWorks\StatsBundle\dao\impl\TopTenBitStreamStatsRetrieverSolrImpl
+    totalBitStreamDownloadsRetriever.class:  ScholarWorks\StatsBundle\dao\impl\TotalBitStreamDownloadsRetrieverSolrImpl
+    totalItemViewsRetriever.class:  ScholarWorks\StatsBundle\dao\impl\TotalItemViewsRetrieverSolrImpl
+    collectionsRetriever.class: ScholarWorks\StatsBundle\dao\impl\CollectionsRetrieverRestImpl
+    communitiesRetriever.class: ScholarWorks\StatsBundle\dao\impl\CommunitiesRetrieverRestImpl
+    authorsRetriever.class: ScholarWorks\StatsBundle\dao\impl\authors\AuthorsRetrieverSolrImpl
+    jsonRetriever.class:  ScholarWorks\StatsBundle\dao\impl\JsonRetriever
+    numberOfItemsInRegionRetriever.class:  ScholarWorks\StatsBundle\dao\impl\NumberOfItemsInRegionRetrieverSolrImpl
+    solarium.client_registry.class:  Nelmio\SolariumBundle\ClientRegistry
+    solarium.data_collector.class:  Nelmio\SolariumBundle\Logger
+    collectionsAndCommunitiesStatsService.class:  ScholarWorks\StatsBundle\Services\impl\CommunityAndCollectionStatsServiceImpl
+    typeService.class:  ScholarWorks\StatsBundle\Services\impl\TypeService
+    typeFilter.class:  ScholarWorks\StatsBundle\dao\impl\TypeFilter
+    authorRegionStatisticsService.class:  ScholarWorks\StatsBundle\Services\impl\AuthorRegionStatisticsServiceImpl
+    itemsByAuthorRetriever.class:   ScholarWorks\StatsBundle\dao\impl\authors\ItemsByAuthorRetrieverSolrImpl
+    authorTotalItemViewsRetriever.class:  ScholarWorks\StatsBundle\dao\impl\authors\TotalItemViewsRetrieverSolrImpl
+    bitstreamInformationRetriever.class:    ScholarWorks\StatsBundle\dao\impl\authors\BitstreamInformationRetrieverImpl
+    authorsUrlRetriever.class:  ScholarWorks\StatsBundle\dao\impl\authors\AuthorUrlRetrieverImpl
+    collectionUrlRetriever.class:   ScholarWorks\StatsBundle\dao\impl\CollectionUrlRetrieverRestImpl
+    communityUrlRetriever.class:   ScholarWorks\StatsBundle\dao\impl\CommunityUrlRetrieverRestImpl
+    defaultUrlRetriever.class:  ScholarWorks\StatsBundle\dao\impl\DefaultUrlRetrieverImpl
+    containerUrlRetriever.class:  ScholarWorks\StatsBundle\Services\impl\ContainerUrlRetrieverImpl
+    pageInitializationServiceAuthor.class:  ScholarWorks\StatsBundle\Services\impl\PageInitializationServiceAuthorImpl
+    pageInitializationServiceCommAndColl.class:  ScholarWorks\StatsBundle\Services\impl\PageInitializationServiceCommAndCollImpl

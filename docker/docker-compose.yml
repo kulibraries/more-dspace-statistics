@@ -1,0 +1,11 @@
+version: '2'
+
+services:
+  dspace-stats:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    ports:
+      - "8888:80"
+    volumes:
+      - ./parameters.yml:/dspstats/app/config/parameters.yml

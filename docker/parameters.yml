@@ -1,0 +1,9 @@
+# This file is auto-generated during the composer install
+parameters:
+    google_analytics: null
+    site_name: 'Your Institution - More DSpace Stats'
+    cacheTTL: '12 hours'
+    DSpaceBaseUrl: 'http://your.dspace.edu'
+    solrSearchCore: 'http://yoursolr.edu:8080/readonlysolr/search'
+    solrStatisticsCore: 'http://yoursolr.edu:8080/readonlysolr/statistics'
+    secret: YouReallyOughtaSetSomethingForCSRF

@@ -1,0 +1,4 @@
+scholar_works_stats:
+    resource: "@ScholarWorksStatsBundle/Resources/config/routing.yml"
+    prefix:   /
+

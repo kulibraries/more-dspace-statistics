@@ -1,0 +1,33 @@
+{% extends 'ScholarWorksStatsBundle::layout.html.twig' %}
+
+{% block querybar %}
+    {% include 'ScholarWorksStatsBundle::community-collection.html.twig' %}
+{% endblock %}
+
+
+{% block javascript %}
+
+    <script>
+        $(function() {
+            $( "#region-name").autocomplete({
+                minLength: 3,
+                source: "{{ path('communities_and_collections_autocomplete') }}",
+                focus: function(event, ui) {
+                    $("#region-name").val(ui.item.label);
+                    return false;
+                },
+                select:  function(event, ui) {
+                    $("#region-name").val(ui.item.label);
+                    $("#region").val(ui.item.value);
+
+                    return false;
+                }
+            }).autocomplete("instance")._renderItem = function (ul, item) {
+                return $("<li>")
+                        .append("<a>" + item.label + "</a><br>")
+                        .appendTo(ul);
+            };
+        });
+    </script>
+
+{% endblock %}

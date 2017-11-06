@@ -1,0 +1,26 @@
+
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">{{ site_name }}</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="navbar-collapse-1">
+      <ul class="nav navbar-nav">
+          <li><a id="entire-repository-link" href="{{ path('scholar_works_stats_homepage') }}">Entire Repository</a></li>
+
+          <li><a id="communities-and-collections-link" href="{{ path('scholar_works_stats_homepage') }}communities-and-collections/">Communities / Collections</a></li>
+
+          <li><a id="authors-link" href="{{ path('scholar_works_stats_homepage') }}authors/">Authors</a></li>
+
+      </ul>
+    </div><!-- /.navbar-collapse -->
+    </div>
+</nav>

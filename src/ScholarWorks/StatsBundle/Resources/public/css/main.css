@@ -1,0 +1,181 @@
+
+@media (max-width:  767px) {
+
+}
+
+@media (min-width:  768px) and (max-width: 991px) {
+
+
+
+
+}
+@media (max-width: 991px) {
+
+    #region {
+        max-width: 350px;
+    }
+
+    #to {
+        max-width: 350px;
+    }
+
+    #from {
+        max-width: 350px;
+    }
+}
+
+@media (min-width: 992px) {
+
+    #region {
+        /* min-width: 250px;*/
+    }
+
+    #to {
+        min-width: 100px;
+    }
+
+    #from {
+        min-width: 100px;
+    }
+}
+
+
+@media (min-width:  992px) and (max-width: 1199px) {
+    .region-control {
+/*        float: right;*/
+    }
+
+    body {
+        /* padding-top: 80px;*/
+    }
+}
+
+@media (min-width:  1200px) {
+
+    .region-control {
+/*        float: right;*/
+    }
+
+    body {
+        /* padding-top: 90px;*/
+    }
+}
+
+
+
+.navbar-default .navbar-brand {
+    color: #000;
+}
+
+.navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
+    color: #000 !important;
+}
+
+.nav > li > a {
+    color: #000 !important;
+}
+
+.nav > li > a:hover, .nav > li > a:focus {
+    color: #000000 !important;
+    text-decoration: none;
+    background-color: #EEE !important;
+}
+
+.file-downloads-stats {
+    text-align: right;
+}
+
+select {
+    margin-right: 1em;
+}
+
+.submit-button {
+    color: black;
+    margin-right: 0;
+    margin-top: 1.7em;
+    margin-bottom: 1em;
+}
+
+h4 {
+    margin-top: 3em;
+}
+
+.statistic-title {
+    font: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 18px;
+}
+
+.statistic-value {
+    font: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 18px;
+    display: block;
+    text-align: right;
+}
+
+table {
+    /* margin-top: 1em; */
+    margin-bottom: 1em;
+}
+
+td, th {
+
+    padding-left: 1em;
+}
+
+tr:nth-child(even) {
+    background-color: #FFF;
+}
+
+tbody > tr:nth-child(odd) {
+    background-color: #DAD6CB;
+}
+
+
+.formbar {
+    padding: 0 0 0 0;
+    margin: 0 0 0 0;
+}
+
+.content {
+    padding-left: 0;
+    margin-left: 0;
+}
+
+/* combo box css */
+
+.ui-autocomplete-category {
+    font-weight: bold;
+    padding: .2em .4em;
+    margin: .8em 0 .2em;
+    line-height: 1.5;
+}
+
+
+.custom-combobox {
+    position: relative;
+    display: inline-block;
+}
+.custom-combobox-toggle {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin-left: -1px;
+    padding: 0;
+}
+.custom-combobox-input {
+    margin: 0;
+    padding: 5px 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

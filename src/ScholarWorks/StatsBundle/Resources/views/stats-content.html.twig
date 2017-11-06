@@ -1,0 +1,151 @@
+<div class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <h1><a href="{{ statistics.regionUrl }}">{{  statistics.regionStatisticsForTimePeriod.region.name }}</a> ( {{  statistics.regionStatisticsForTimePeriod.startDate.format("Y-m-d") }} - {{ statistics.regionStatisticsForTimePeriod.endDate.format("Y-m-d") }} )</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-10 col-sm-5 col-md-3">
+            <span class="statistic-title">Item Views:</span>
+        </div>
+        <div class="col-xs-2 col-sm-3 col-md-2">
+            <span class="statistic-value" align="right">{{ statistics.regionStatisticsForTimePeriod.totalItemViews }}</span>
+        </div>
+        <div class="hidden-xs col-sm-4 col-md-7"></div>
+    </div>
+    <div class="row">
+        <div class="col-xs-10 col-sm-5 col-md-3">
+            <span class="statistic-title">File Downloads:</span>
+        </div>
+        <div class="col-xs-2 col-sm-3 col-md-2">
+            <span class="statistic-value">{{ statistics.regionStatisticsForTimePeriod.totalBitStreamDownloads }}</span>
+        </div>
+        <div class="hidden-xs col-sm-4 col-md-7"></div>
+    </div>
+    <div class="row">
+        <div class="col-xs-10 col-sm-5 col-md-3">
+            <span class="statistic-title">Number of items:</span>
+        </div>
+        <div class="col-xs-2 col-sm-3 col-md-2">
+            <span class="statistic-value">{{ statistics.regionStatisticsForTimePeriod.numberOfItemsInRegion }}</span>
+        </div>
+        <div class="hidden-xs col-sm-4 col-md-7"></div>
+    </div>
+    <div class="row">
+        <div class="col-xs-10 col-sm-5 col-md-3">
+            <span class="statistic-title">Average downloads per item:</span>
+        </div>
+        <div class="col-xs-2 col-sm-3 col-md-2">
+            <span class="statistic-value">{{ statistics.regionStatisticsForTimePeriod.averageNumberOfDownloadsPerItem }}</span>
+        </div>
+        <div class="hidden-xs col-sm-4 col-md-7"></div>
+    </div>
+    <div class="row">
+        <br/>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <h4>Top 10 Items by Most File Downloads</h4>
+        </div>
+    </div>
+    <div class="row">
+        {%  if statistics.regionStatisticsForTimePeriod.arrayOfTopTenDownloads|length == 0 %}
+            <div class="col-md-12">
+                No Downloads during this time frame<br/><br/><br/>
+            </div>
+        {%  else %}
+            <div class="col-md-12">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Item Title</th>
+                        <th>Number of file downloads</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for item in statistics.regionStatisticsForTimePeriod.arrayOfTopTenDownloads %}
+                        <tr>
+                            <td><a href="{{ item.handle }}">{{ item.title }}</a></td>
+                            <td class="file-downloads-stats">{{ item.numberOfBitStreamDownloads }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% endif %}
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h1><a href="{{ statistics.regionUrl }}">{{  statistics.regionStatisticsForAllTime.region.name }}</a> ( All Time )</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-10 col-sm-5 col-md-3">
+            <span class="statistic-title">Item Views:</span>
+        </div>
+        <div class="col-xs-2 col-sm-3 col-md-2">
+            <span class="statistic-value">{{ statistics.regionStatisticsForAllTime.totalItemViews }}</span>
+        </div>
+        <div class="hidden-xs col-sm-4 col-md-7"></div>
+    </div>
+    <div class="row">
+        <div class="col-xs-10 col-sm-5 col-md-3">
+            <span class="statistic-title">File Downloads:</span>
+        </div>
+        <div class="col-xs-2 col-sm-3 col-md-2">
+            <span class="statistic-value">{{ statistics.regionStatisticsForAllTime.totalBitStreamDownloads }}</span>
+        </div>
+        <div class="hidden-xs col-sm-4 col-md-7"></div>
+    </div>
+    <div class="row">
+        <div class="col-xs-10 col-sm-5 col-md-3">
+            <span class="statistic-title">Number of items:</span>
+        </div>
+        <div class="col-xs-2 col-sm-3 col-md-2">
+            <span class="statistic-value">{{ statistics.regionStatisticsForAllTime.numberOfItemsInRegion }}</span>
+        </div>
+        <div class="hidden-xs col-sm-4 col-md-7"></div>
+    </div>
+    <div class="row">
+        <div class="col-xs-10 col-sm-5 col-md-3">
+            <span class="statistic-title">Average downloads per item:</span>
+        </div>
+        <div class="col-xs-2 col-sm-3 col-md-2">
+            <span class="statistic-value">{{ statistics.regionStatisticsForAllTime.averageNumberOfDownloadsPerItem }}</span>
+        </div>
+        <div class="hidden-xs col-sm-4 col-md-7"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h4>Top 10 Items by Most File Downloads</h4>
+        </div>
+    </div>
+    <div class="row">
+        {%  if statistics.regionStatisticsForAllTime.arrayOfTopTenDownloads|length == 0 %}
+            <div class="col-md-12">
+                No Downloads during this time frame<br/><br/><br/>
+            </div>
+        {%  else %}
+
+            <div class="col-md-12">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Item Title</th>
+                        <th>Number of file downloads</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for item in statistics.regionStatisticsForAllTime.arrayOfTopTenDownloads %}
+                        <tr>
+                            <td><a href="{{ item.handle }}">{{ item.title }}</a></td>
+                            <td class="file-downloads-stats">{{ item.numberOfBitStreamDownloads }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% endif %}
+    </div>
+</div>

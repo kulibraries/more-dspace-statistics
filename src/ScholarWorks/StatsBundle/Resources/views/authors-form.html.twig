@@ -1,0 +1,37 @@
+<div>
+    <div class="row">
+        <form  role="form" action="{{ path('scholar_works_stats_homepage') }}authors/" method="get">
+
+            <div class="col-md-6 col-lg-6">
+                <div class="region-control">
+                         <label for="region-name">Author:<br/></label>
+                             {% if statistics.region is not null %}
+                                 <input id="region-name" name="region-name" value="{{ statistics.region.name }}"  class="form-control" placeholder="Last name, first name" />
+                                 <input id="region" name="region" hidden="true" value="{{ statistics.region.displayId }}"/>
+                             {% else %}
+                                 <input id="region-name" name="region-name"  class="form-control"  placeholder="Last name, first name"/>
+                                 <input id="region" name="region" hidden="true" />
+                             {% endif %}
+
+                    </label>
+                </div>
+            </div>
+
+
+            <div class="col-md-2 col-lg-2">
+                <label for="from">From:&nbsp&nbsp                </label>
+                    <input class="form-control" type="text" id="from" name="from" width="15">
+
+            </div>
+
+            <div class="col-md-2 col-lg-2">
+                <label for="to">&nbspTo:&nbsp                </label>
+                    <input class="form-control" type="text" id="to" name="to">
+
+            </div>
+            <div class="col-md-2 col-lg-2">
+                <button class="btn btn-default submit-button" type="submit" value="Update View">Update View</button>
+            </div>
+        </form>
+    </div>
+</div>

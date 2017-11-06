@@ -1,0 +1,21 @@
+scholar_works_stats_homepage:
+    path:     /
+    defaults: { _controller: ScholarWorksStatsBundle:Default:index }
+    methods:  [GET]
+
+
+authors:
+    path:     /authors/
+    defaults: { _controller: ScholarWorksStatsBundle:Authors:index }
+
+authors_autocomplete:
+    path:     /ajax/authors
+    defaults: { _controller: ScholarWorksStatsBundle:Authors:autocomplete }
+
+index:
+    path:     /communities-and-collections/
+    defaults: { _controller: ScholarWorksStatsBundle:CommunitiesAndCollections:index }
+
+communities_and_collections_autocomplete:
+    path:     /ajax/comunities-and-collections
+    defaults: { _controller: ScholarWorksStatsBundle:CommunitiesAndCollections:autocomplete }

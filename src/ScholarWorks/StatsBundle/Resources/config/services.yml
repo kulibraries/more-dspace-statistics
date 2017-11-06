@@ -1,0 +1,151 @@
+services:
+#    scholar_works_stats.example:
+#        class: %scholar_works_stats.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
+
+    ScholarWorks\StatsBundle\Services\SolariumFactory:
+      calls:
+        - [setLogger, ['@?solarium.data_collector','%kernel.debug%']]
+
+    solrSearchService:
+      factory: 'ScholarWorks\StatsBundle\Services\SolariumFactory:getSolrCore'
+      class: Solarium\Client
+      arguments: ['%solrSearchCore%']
+
+    solrStatsService:
+      factory: 'ScholarWorks\StatsBundle\Services\SolariumFactory:getSolrCore'
+      class: Solarium\Client
+      arguments: ['%solrStatisticsCore%']
+
+    solarium.client_registry:
+      class:  "%solarium.client_registry.class%"
+      arguments:  []
+
+    DateService:
+      class: "%DateService.class%"
+      arguments: ["@solrStatsService", "@cache.app"]
+      properties:
+          dateStatsStart: "%dateStatsStart%"
+          cacheTTL: "%cacheTTL%"
+
+    statisticsService:
+      class:  "%statisticsService.class%"
+      arguments:  ["@typeService", "@containerUrlRetriever", "@collectionsRetriever", "@communitiesRetriever", "@authorsRetriever", "@DateService"]
+
+    jsonRetriever:
+      class:  "%jsonRetriever.class%"
+      arguments:  ["%webServiceBaseUrl%", "@guzzle.client.default"]
+      tags:
+        - { name: monolog.logger, channel: main }
+      autowire: true
+
+    # (dao\impl\TopTenBitStreamStatsRetrieverSolrImpl)
+    topTenBitStreamStatsRetriever:
+      class:  "%topTenBitStreamStatsRetriever.class%"
+      arguments:  ["@jsonRetriever", "@solrStatsService"]
+
+    # (dao\impl\TotalBitStreamDownloadsRetrieverSolrImpl)
+    totalBitStreamDownloadsRetriever:
+      class:  "%totalBitStreamDownloadsRetriever.class%"
+      arguments:  ["@solrStatsService"]
+
+    # (dao\impl\authors\TotalItemViewsRetrieverSolrImpl)
+    totalItemViewsRetriever:
+      class:  "%totalItemViewsRetriever.class%"
+      arguments:  ["@solrStatsService"]
+
+    collectionsRetriever:
+      class:  "%collectionsRetriever.class%"
+      arguments:  ["@jsonRetriever", "@cache.app"]
+      properties:
+          cacheTTL: "%cacheTTL%"
+
+    # (dao\impl\authors\AuthorRetrieverSolrImpl)
+    authorsRetriever:
+      class:  "%authorsRetriever.class%"
+      arguments:  ["@solrSearchService", "@cache.app"]
+      properties:
+          cacheTTL: "%cacheTTL%"
+
+    communitiesRetriever:
+      class:  "%communitiesRetriever.class%"
+      arguments:  ["@jsonRetriever", "@cache.app"]
+      properties:
+          cacheTTL: "%cacheTTL%"
+
+    typeService:
+      class:  "%typeService.class%"
+      arguments:  ["@typeFilter", "@collectionsAndCommunitiesStatsService", "@authorRegionStatisticsService"]
+
+    typeFilter:
+      class:  "%typeFilter.class%"
+      arguments:  []
+
+    collectionsAndCommunitiesStatsService:
+      class:  "%collectionsAndCommunitiesStatsService.class%"
+      arguments:  ["%dateItemsStartedToBeAdded%", "@topTenBitStreamStatsRetriever", "@totalBitStreamDownloadsRetriever", "@totalItemViewsRetriever", "@numberOfItemsInRegionRetriever"]
+
+    # (dao\impl\NumberOfItemsInRegionRetrieverSolrImpl)
+    numberOfItemsInRegionRetriever:
+      class:  "%numberOfItemsInRegionRetriever.class%"
+      arguments:  ["@solrSearchService"]
+
+    authorRegionStatisticsService:
+      class:  "%authorRegionStatisticsService.class%"
+      arguments:  ["%dateItemsStartedToBeAdded%", "@itemsByAuthorRetriever", "@bitstreamInformationRetriever", "@authorTotalItemViewsRetriever"]
+      tags:
+        - { name: monolog.logger, channel: main }
+      autowire: true
+
+    itemsByAuthorRetriever:
+      class:  "%itemsByAuthorRetriever.class%"
+      arguments:  ["@solrSearchService"]
+
+    # (dao\impl\author\TotalItemViewsRetrieverSolrImpl)
+    authorTotalItemViewsRetriever:
+      class:  "%authorTotalItemViewsRetriever.class%"
+      arguments:  ["@solrStatsService"]
+
+    bitstreamInformationRetriever:
+      class:  "%bitstreamInformationRetriever.class%"
+      arguments:  ["@solrStatsService", "@jsonRetriever"]
+      tags:
+        - { name: monolog.logger, channel: main }
+      autowire: true
+
+    authorsUrlRetriever:
+      class:  "%authorsUrlRetriever.class%"
+      arguments:  []
+      properties:
+          webServiceBaseUrl:  "%webServiceBaseUrl%"
+
+    collectionUrlRetriever:
+      class:  "%collectionUrlRetriever.class%"
+      arguments:  ["@jsonRetriever"]
+
+    communityUrlRetriever:
+      class:  "%communityUrlRetriever.class%"
+      arguments:  ["@jsonRetriever"]
+
+    defaultUrlRetriever:
+        class:  "%defaultUrlRetriever.class%"
+        arguments:  []
+        properties:
+            webServiceBaseUrl: "%webServiceBaseUrl%"
+
+    containerUrlRetriever:
+        class:  "%containerUrlRetriever.class%"
+        arguments:  ["@typeFilter", "@authorsUrlRetriever", "@collectionUrlRetriever", "@communityUrlRetriever", "@defaultUrlRetriever"]
+
+    authorsPageInitializationService:
+        class:  "%pageInitializationServiceAuthor.class%"
+        arguments:  ["@authorsRetriever", "@DateService"]
+        properties:
+            regionUrl: "%webServiceBaseURL%"
+
+    commAndCollPageInitializationService:
+        class:  "%pageInitializationServiceCommAndColl.class%"
+        arguments:  ["@collectionsRetriever", "@communitiesRetriever", "@DateService"]
+        properties:
+            regionUrl: "%webServiceBaseURL%"
+
