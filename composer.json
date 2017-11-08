@@ -1,6 +1,6 @@
 {
-    "name": "tom/test",
-    "license": "proprietary",
+    "name": "kulibraries/more-scholarworks-stats",
+    "license": "BSD-3-Clause",
     "type": "project",
     "autoload": {
         "psr-4": {
