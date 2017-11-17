@@ -11,6 +11,7 @@ namespace ScholarWorks\StatsBundle\dao\impl;
 use ScholarWorks\StatsBundle\models\Region;
 use ScholarWorks\StatsBundle\dao\StatsDataRetriever;
 use ScholarWorks\StatsBundle\models\Item;
+use Psr\Log\LoggerInterface;
 use Solarium;
 
 
@@ -18,11 +19,13 @@ class TopTenBitStreamStatsRetrieverSolrImpl implements StatsDataRetriever {
 
     private $jsonRetriever;
     private $solrClient;
+    private $logger;
 
-    public function __construct(JsonRetriever $jsonRetriever, Solarium\Client $solrClient)
+    public function __construct(JsonRetriever $jsonRetriever, Solarium\Client $solrClient, LoggerInterface $logger = null)
     {
         $this->jsonRetriever = $jsonRetriever;
         $this->solrClient = $solrClient;
+        $this->logger = $logger;
     }
 
     public function retrieveRegionData(Region $region, \DateTime $startDate, \DateTime $endDate)
@@ -69,7 +72,15 @@ class TopTenBitStreamStatsRetrieverSolrImpl implements StatsDataRetriever {
             $numberOfBitStreamDownloads = $topTen[$i + 1];
 
             $itemUrl = "/rest/items/{$id}";
-            $itemInformation = $this->jsonRetriever->retrieveJsonData($itemUrl);
+            $itemInformation = null;
+            try {
+                $itemInformation = $this->jsonRetriever->retrieveJsonData($itemUrl);
+            } catch (\Exception $e) {
+                if($this->logger != null) {
+                    $this->logger->error("Error in TopTenBitStreamStatsRetrieverSolrImpl:retrieveRegionData.  Exception:  ",
+                        array("cause" => $e));
+                }
+            }
 
             if ($itemInformation != null) {
                 $title = $itemInformation['name'];

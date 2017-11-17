@@ -42,7 +42,8 @@ services:
     # (dao\impl\TopTenBitStreamStatsRetrieverSolrImpl)
     topTenBitStreamStatsRetriever:
       class:  "%topTenBitStreamStatsRetriever.class%"
-      arguments:  ["@jsonRetriever", "@solrStatsService"]
+      arguments:  ["@jsonRetriever", "@solrStatsService", '@logger']
+
 
     # (dao\impl\TotalBitStreamDownloadsRetrieverSolrImpl)
     totalBitStreamDownloadsRetriever:
