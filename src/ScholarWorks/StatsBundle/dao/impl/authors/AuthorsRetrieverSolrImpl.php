@@ -58,7 +58,7 @@ class AuthorsRetrieverSolrImpl implements RegionDataRetriever {
                     }
                 }
 
-                if ($numFound==0 or $numFound<$limit) {
+                if ($numFound==0 or $numFound<($limit-1)) {
                     break;
                 }
                 $offset += $limit;
